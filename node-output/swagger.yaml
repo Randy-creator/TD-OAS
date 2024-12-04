@@ -10,7 +10,7 @@ paths:
   /books:
     get:
       summary: Get a list of books
-      description: "Retrieve all books, optionally filtered by `bookName` or `releaseDate`."
+      description: FInd all books by `bookName` or `releaseDate`
       parameters:
       - name: bookName
         in: query
@@ -38,6 +38,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Books'
+    put:
+      summary: Update or replace a book
+      description: Updating infos/details of a book
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Books'
+        required: true
+      responses:
+        "200":
+          description: the book have been updated
 components:
   schemas:
     Books:
