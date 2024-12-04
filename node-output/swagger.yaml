@@ -49,7 +49,19 @@ paths:
         required: true
       responses:
         "200":
-          description: the book have been updated
+          description: the book has been updated
+    post:
+      summary: Add a new book
+      description: Add a book
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Books'
+        required: true
+      responses:
+        "201":
+          description: the book has been added
 components:
   schemas:
     Books:
