@@ -123,6 +123,21 @@ paths:
       responses:
         "201":
           description: the author has been added succesfully
+    delete:
+      summary: Delete an author
+      description: Delete an author by their ID.
+      parameters:
+      - name: id
+        in: query
+        description: The ID of the author to delete
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: the author has been deleted successfully
 components:
   schemas:
     Books:
