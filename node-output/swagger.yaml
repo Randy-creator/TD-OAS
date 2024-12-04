@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: library management
+  title: Library management
   description: The API for managing the books and authors in a library
   version: 1.0.0
 servers:
@@ -62,6 +62,21 @@ paths:
       responses:
         "201":
           description: the book has been added
+    delete:
+      summary: delete a book
+      description: delete a book from the library by his id
+      parameters:
+      - name: id
+        in: query
+        description: the id of the book that will be deleted
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: the books have been deleted succesfully
 components:
   schemas:
     Books:
