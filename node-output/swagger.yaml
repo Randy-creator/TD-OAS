@@ -1,9 +1,75 @@
 openapi: 3.0.0
 info:
-  title: home-iot-api
-  description: The API for the EatBacon IOT project
+  title: library management
+  description: The API for managing the books and authors in a library
   version: 1.0.0
 servers:
 - url: https://virtserver.swaggerhub.com/HEIRANDY2/TD_OAS/1.0.0
   description: SwaggerHub API Auto Mocking
-components: {}
+paths:
+  /books:
+    get:
+      summary: Get a list of books
+      description: "Retrieve all books, optionally filtered by `bookName` or `releaseDate`."
+      parameters:
+      - name: bookName
+        in: query
+        description: find by book name
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: releaseDate
+        in: query
+        description: find by date
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+      responses:
+        "200":
+          description: A list of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Books'
+components:
+  schemas:
+    Books:
+      required:
+      - author
+      - bookName
+      - id
+      - pageNumbers
+      - releaseDate
+      - topic
+      type: object
+      properties:
+        id:
+          type: string
+          description: the identifiant of the book
+        bookName:
+          type: string
+          description: The book's name
+        author:
+          type: string
+          description: the author's name or his/her pseudonyme
+        pageNumbers:
+          type: integer
+          description: The number of pages in the book
+        topic:
+          type: string
+          description: The genre(s) of the book
+          enum:
+          - ROMANCE
+          - COMEDY
+          - OTHER
+        releaseDate:
+          type: string
+          description: Date where the books was released
+          format: date
