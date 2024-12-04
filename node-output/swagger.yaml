@@ -1,0 +1,9 @@
+openapi: 3.0.0
+info:
+  title: home-iot-api
+  description: The API for the EatBacon IOT project
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/HEIRANDY2/TD_OAS/1.0.0
+  description: SwaggerHub API Auto Mocking
+components: {}
