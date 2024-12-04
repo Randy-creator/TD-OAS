@@ -77,6 +77,40 @@ paths:
       responses:
         "200":
           description: the books have been deleted succesfully
+  /authors:
+    get:
+      summary: List of authors
+      description: Find all authors  by `authorName`
+      parameters:
+      - name: authorName
+        in: query
+        description: Find by author name
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: A list of all authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+    put:
+      summary: Update an author
+      description: Replace an existing author's details
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        "200":
+          description: The author's infos has been updated succesfully
 components:
   schemas:
     Books:
