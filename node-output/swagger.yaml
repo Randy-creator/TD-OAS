@@ -84,7 +84,7 @@ paths:
       parameters:
       - name: authorName
         in: query
-        description: Find by author name
+        description: Find by author name`
         required: false
         style: form
         explode: true
@@ -111,6 +111,18 @@ paths:
       responses:
         "200":
           description: The author's infos has been updated succesfully
+    post:
+      summary: Add new author
+      description: Add an author to the library
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        "201":
+          description: the author has been added succesfully
 components:
   schemas:
     Books:
