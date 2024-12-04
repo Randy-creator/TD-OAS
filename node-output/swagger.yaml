@@ -112,3 +112,22 @@ components:
           type: string
           description: Date where the books was released
           format: date
+    Author:
+      required:
+      - Name
+      - id
+      - sex
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifiant of the author
+        Name:
+          type: string
+          description: name of the author
+        sex:
+          type: string
+          description: Gender of the author
+          enum:
+          - M
+          - F
