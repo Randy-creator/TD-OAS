@@ -1,0 +1,185 @@
+openapi: 3.0.0
+info:
+  title: Student management
+  description: The API for managing the student in a school
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/HEIRANDY2/Student_management/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: https://virtserver.swaggerhub.com/HEIRANDY2/TD_OAS/1.0.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /group:
+    get:
+      summary: Get a list of all the group
+      description: FInd all group
+      parameters:
+      - name: promotion
+        in: query
+        description: find by promotion the list of group
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+      responses:
+        "200":
+          description: A list of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Group'
+    put:
+      summary: Update the details of a group
+      description: Updating infos/details of a group
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+        required: true
+      responses:
+        "200":
+          description: the group has been updated
+    post:
+      summary: Add group
+      description: Add a new group
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+        required: true
+      responses:
+        "201":
+          description: the group has been added
+    delete:
+      summary: delete a group
+      description: delete a group from the student management app
+      parameters:
+      - name: name
+        in: query
+        description: the name of the book
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: the group have been disable succesfully
+  /student:
+    get:
+      summary: List of student
+      description: Find a student by his name
+      parameters:
+      - name: name
+        in: query
+        description: Find by student's name
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: A list of all students
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+    put:
+      summary: Update a student
+      description: Replace an existing student's information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+        required: true
+      responses:
+        "200":
+          description: The student's infos has been updated succesfully
+    post:
+      summary: Add new student
+      description: Add a new student to the school
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+        required: true
+      responses:
+        "200":
+          description: the student has been added succesfully
+    delete:
+      summary: expel a student
+      description: Expel a student from the school
+      parameters:
+      - name: reference
+        in: query
+        description: The STD of the student
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: the student has been expeled successfully
+components:
+  schemas:
+    Group:
+      required:
+      - name
+      - promotion
+      - studentNumber
+      - years
+      type: object
+      properties:
+        name:
+          type: string
+          description: the name of the groups
+        years:
+          type: string
+          description: the timelapse that the student studied
+          format: date
+        promotion:
+          type: string
+          description: the promotion of the group
+          enum:
+          - G1
+          - G2
+          - H1
+          - H2
+          - J1
+          - J2
+          - K1
+          - K2
+        studentNumber:
+          type: integer
+          description: The number of student in the groups
+    Student:
+      required:
+      - birthdate
+      - group
+      - name
+      - reference
+      - sex
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the student =
+        sex:
+          type: string
+          description: name of the author
+        birthdate:
+          type: string
+          description: Gender of the author
+          format: date
